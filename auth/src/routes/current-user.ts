@@ -1,6 +1,7 @@
 import express, {Request, Response}  from 'express'
+import {currentUser} from "@gabrielhernan_tickets/common";
 const router = express.Router()
-import {currentUser} from "../middlewares/current-user";
+
 
 
 router.get('/api/users/currentuser', [currentUser],(req: Request, res: Response) => {
