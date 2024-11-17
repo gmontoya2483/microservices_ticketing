@@ -51,4 +51,10 @@ POC of how to create a simple application using the microservices, using Docker,
 - Run the command:   
   ```> kubectl rollout restart deployment [depl_name]```
 
-  
+ ### Update common library
+
+if common library changes, you should go to each microservice folder and execute the following command to get the latest version:
+
+```
+$ npm i @gabrielhernan_tickets/common@latest
+```
