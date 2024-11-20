@@ -1,15 +1,13 @@
 import express from 'express';
 import 'express-async-errors'
 
-import cookieSession from "cookie-session";
+import {currentUser, errorHandler, NotFoundError} from "@gabrielhernan_tickets/common";
 
-import {currentUserRouter} from "./routes/current-user";
-import {signinRouter} from "./routes/signin";
-import {signoutRouter} from "./routes/signout";
-import {signupRouter} from "./routes/signup";
-import {errorHandler, NotFoundError} from "@gabrielhernan_tickets/common";
-// import {errorHandler} from "./middlewares/error-handler";
-// import {NotFoundError} from "./errors/not-found-error";
+import cookieSession from "cookie-session";
+import {createTicketRouter} from "./routes/new";
+import {showTicketRouter} from "./routes/show";
+import {indexTicketRouter} from "./routes";
+import {updateTicketRouter} from "./routes/update";
 
 const app = express();
 
@@ -25,10 +23,12 @@ app.use(
 );
 
 
-app.use(currentUserRouter);
-app.use(signinRouter);
-app.use(signoutRouter);
-app.use(signupRouter);
+app.use(currentUser);
+
+app.use(createTicketRouter);
+app.use(indexTicketRouter);
+app.use(showTicketRouter);
+app.use(updateTicketRouter);
 
 app.all('*',  ()=>{
     throw new NotFoundError();
