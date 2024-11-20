@@ -19,7 +19,7 @@ const start = async () => {
     }
 
     app.listen(3000, ()=> {
-        console.log("Auth service started on port 3000");
+        console.log("Tickets service started on port 3000");
     });
 };
 

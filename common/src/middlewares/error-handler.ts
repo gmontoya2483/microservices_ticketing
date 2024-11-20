@@ -18,10 +18,11 @@ export const errorHandler = (
             errors: err.serializeErrors(),
         });
     } else {
+        console.error(err);
         res.status(500).json({
             errors: [
                 {
-                    message: err.message,
+                    message: "Something went wrong",
                 }
             ]
         });
