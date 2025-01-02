@@ -5,6 +5,7 @@ import jwt from "jsonwebtoken";
 
 
 
+jest.mock("../nats-wrapper.ts");
 
 let mongo: any
 
@@ -19,6 +20,7 @@ beforeAll(async () => {
 
 
 beforeEach(async () => {
+    jest.clearAllMocks();
     if (mongoose.connection.db) {
         const collections = await mongoose.connection.db.collections();
 

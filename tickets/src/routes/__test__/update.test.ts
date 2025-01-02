@@ -1,5 +1,8 @@
 import request from "supertest";
 import {app} from '../../app';
+import {natsWrapper} from "../../nats-wrapper";
+
+
 
 
 describe('Update ticket routes', ()=>{
@@ -131,7 +134,37 @@ describe('Update ticket routes', ()=>{
         expect(ticket.body.price).toEqual(price);
 
 
+    });
+
+    it('should publish an Event when a ticket is updated', async () => {
+
+        const cookie = global.signup();
+
+        const newTicket = await request(app)
+            .post(`/api/tickets`)
+            .set('Cookie', cookie)
+            .send({title: 'Title_1', price: 10})
+            .expect(201);
+
+        const id = newTicket.body.id;
+
+
+        const title = "updated Title"
+        const price = 5.23
+
+
+        const response = await request(app)
+            .put(`/api/tickets/${id}`)
+            .set('Cookie',cookie)
+            .send({title, price})
+            .expect(200);
+
+        expect(natsWrapper.client.publish).toHaveBeenCalled();
+
+
     })
+
+
 
 
 });
