@@ -12,6 +12,7 @@ export class TicketCreatedListener extends Listener<TicketCreatedEvent> {
         console.log('ID -> ', data.id);
         console.log('Title -> ', data.title);
         console.log('Price -> ', data.price);
+        console.log('UserId -> ', data.userId);
 
         msg.ack();
     }
