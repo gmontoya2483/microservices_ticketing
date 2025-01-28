@@ -43,6 +43,6 @@ spec:
   type: ClusterIP
   ports:
     - port: 3000
-      name: auth
+      name: tickets
       protocol: TCP
       targetPort: 3000
