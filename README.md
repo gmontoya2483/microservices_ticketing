@@ -58,3 +58,11 @@ if common library changes, you should go to each microservice folder and execute
 ```
 $ npm i @gabrielhernan_tickets/common@latest
 ```
+
+
+### Get access to the Mongo database
+
+```
+$ kubectl exec -it {pod} mongosh
+
+```

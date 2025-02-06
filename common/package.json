@@ -1,6 +1,6 @@
 {
   "name": "@gabrielhernan_tickets/common",
-  "version": "1.0.8",
+  "version": "1.0.10",
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
   "files": [
@@ -9,7 +9,7 @@
   "scripts": {
     "clean": "del-cli ./build/*",
     "build": "npm run clean && tsc",
-    "pub": "git add . && git commit -m \"Updated common Library\" && npm version patch && npm run build && npm publish"
+    "pub": "npm version patch && git add . && git commit -m \"Updated common Library\" &&  npm run build && npm publish"
   },
   "keywords": [],
   "author": "",

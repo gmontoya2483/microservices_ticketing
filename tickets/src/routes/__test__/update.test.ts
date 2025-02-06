@@ -1,6 +1,8 @@
 import request from "supertest";
 import {app} from '../../app';
 import {natsWrapper} from "../../nats-wrapper";
+import {Ticket} from "../../models/ticket";
+import mongoose from "mongoose";
 
 
 
@@ -9,7 +11,7 @@ describe('Update ticket routes', ()=>{
 
 
 
-    it('Should return a 404 if ticket is found ', async () => {
+    it('Should return a 404 if ticket is not found ', async () => {
         const id = global.generateMongoId()
         await request(app)
             .put(`/api/tickets/${id}`)
@@ -162,7 +164,35 @@ describe('Update ticket routes', ()=>{
         expect(natsWrapper.client.publish).toHaveBeenCalled();
 
 
-    })
+    });
+
+    it("Should return a Bad request if user tries to update a reserved ticket", async ()=> {
+
+        const cookie = global.signup();
+
+        const newTicket = await request(app)
+            .post(`/api/tickets`)
+            .set('Cookie', cookie)
+            .send({title: 'Title_1', price: 10})
+            .expect(201);
+
+        const id = newTicket.body.id;
+
+        const ticket = await Ticket.findById(id);
+        ticket!.set({orderId: new mongoose.Types.ObjectId().toHexString()});
+        await ticket!.save();
+
+        const title = "updated Title"
+        const price = 5.23
+
+
+        const response = await request(app)
+            .put(`/api/tickets/${id}`)
+            .set('Cookie',cookie)
+            .send({title, price})
+            .expect(400);
+
+    });
 
 
 

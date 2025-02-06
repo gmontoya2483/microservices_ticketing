@@ -21,6 +21,7 @@ describe('New route tests', ()=> {
     it('Should return an error if the ticket is already reserved', async ()=> {
 
         const ticket = Ticket.build({
+            id: new mongoose.Types.ObjectId().toHexString(),
             title: 'concert',
             price: 20
         });
@@ -46,6 +47,7 @@ describe('New route tests', ()=> {
 
     it('Should reserve a ticket', async()=>{
         const ticket = Ticket.build({
+            id: new mongoose.Types.ObjectId().toHexString(),
             title: 'concert',
             price: 20
         });
@@ -62,6 +64,7 @@ describe('New route tests', ()=> {
 
     it('Should reserve a ticket if a previous order is already cancelled', async()=>{
         const ticket = Ticket.build({
+            id: new mongoose.Types.ObjectId().toHexString(),
             title: 'concert',
             price: 20
         });
@@ -86,6 +89,7 @@ describe('New route tests', ()=> {
     it('Should emit an order created event when an order is created', async () => {
 
         const ticket = Ticket.build({
+            id: new mongoose.Types.ObjectId().toHexString(),
             title: 'concert',
             price: 20
         });

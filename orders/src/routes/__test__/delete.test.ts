@@ -4,6 +4,7 @@ import {Ticket} from "../../models/ticket";
 import {OrderStatus} from "@gabrielhernan_tickets/common";
 import {Order} from "../../models/order";
 import {natsWrapper} from "../../nats-wrapper";
+import mongoose from "mongoose";
 
 describe('Delete Route', ()=> {
 
@@ -13,6 +14,7 @@ describe('Delete Route', ()=> {
 
         // Create a ticket
         const ticket = Ticket.build({
+            id: new mongoose.Types.ObjectId().toHexString(),
             title: 'new ticket',
             price: 15
         });
@@ -48,6 +50,7 @@ describe('Delete Route', ()=> {
 
         // Create a ticket
         const ticket = Ticket.build({
+            id: new mongoose.Types.ObjectId().toHexString(),
             title: 'new ticket',
             price: 15
         });
