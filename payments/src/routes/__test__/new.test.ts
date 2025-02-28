@@ -5,6 +5,7 @@ import {Order} from "../../models/order";
 import {OrderStatus} from "@gabrielhernan_tickets/common";
 import { stripe } from '../../stripe'
 import {Payment} from "../../models/payment";
+import {natsWrapper} from "../../nats-wrapper";
 
 
 jest.mock('../../stripe');
@@ -101,12 +102,17 @@ describe('New Route', ()=> {
         expect(chargeOptions.amount).toEqual(order.price * 100);
 
 
+        expect(natsWrapper.client.publish).toHaveBeenCalled();
+
+
         const payment =  await Payment.findOne({
             orderId: order.id,
             stripeId: fakeStripeId
         });
 
         expect(payment).not.toBeNull();
+
+
 
     });
 
