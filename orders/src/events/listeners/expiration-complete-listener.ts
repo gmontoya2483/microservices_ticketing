@@ -17,7 +17,8 @@ export class ExpirationCompleteListener extends Listener<ExpirationCompleteEvent
         }
 
         if(order.status === OrderStatus.Complete) {
-           return msg.ack();
+            msg.ack();
+            return;
         }
 
 

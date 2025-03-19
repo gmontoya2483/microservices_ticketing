@@ -33,7 +33,14 @@ POC of how to create a simple application using the microservices, using Docker,
     >$ kubectl delete secret db-user-pass
     >```
 
-4) To run in dev mode use [Skaffold](https://skaffold.dev/).
+3) Create a secret for handling STRIPE
+
+   ```
+   $ kubectl create secret generic stripe-secret --from-literal STRIPE_KEY=your_secret_key
+   ```
+
+
+5) To run in dev mode use [Skaffold](https://skaffold.dev/).
 
     ```skaffold dev```
     
@@ -63,6 +70,11 @@ $ npm i @gabrielhernan_tickets/common@latest
 ### Get access to the Mongo database
 
 ```
-$ kubectl exec -it {pod} mongosh
+$  kubectl exec {pod} -it --  mongosh
 
 ```
+
+
+### Stripe test Credit cards
+
+[Stripe: Testing](https://docs.stripe.com/testing)
