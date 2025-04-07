@@ -19,6 +19,8 @@ POC of how to create a simple application using the microservices, using Docker,
 
 2) Install the load balancer
 
+   [Ingress NGINX](https://kubernetes.github.io/ingress-nginx/)
+
     Load balancer service is controlled by [ingress-nginx](https://kubernetes.github.io/ingress-nginx/)
     
     ```> kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.12.0-beta.0/deploy/static/provider/cloud/deploy.yaml```
@@ -78,3 +80,13 @@ $  kubectl exec {pod} -it --  mongosh
 ### Stripe test Credit cards
 
 [Stripe: Testing](https://docs.stripe.com/testing)
+
+
+
+### Kubernetes viewing config
+
+
+### Kubernetes switching context
+- ```kubectl config use-context {{your-context}}```
+
+
