@@ -22,6 +22,11 @@ spec:
                 secretKeyRef:
                   key: JWT_KEY
                   name: jwt-secret
+            - name: BASE_URL
+              valueFrom:
+                configMapKeyRef:
+                  key: BASE_URL
+                  name: ticketing-config
 ---
 apiVersion: v1
 kind: Service
