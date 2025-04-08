@@ -20,8 +20,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(
     cookieSession({
         signed: false,
-        secure: false,
-        // secure: process.env.NODE_ENV !== 'test',
+        // secure: false,  // Digital Ocean without SSL
+        secure: process.env.NODE_ENV !== 'test',  //Locally
     })
 );
 

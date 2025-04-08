@@ -83,7 +83,33 @@ $  kubectl exec {pod} -it --  mongosh
 
 
 
+
+### Create a digital Ocean Context
+
+[digitalocen doctl](https://github.com/digitalocean/doctl)
+
+1 - Authenticate to DO
+
+```
+$ doctl auth init
+```
+NOTE: use a valid token
+
+2 - Install DO context
+
+```
+$ doctl kubernetes cluter kubeconfig save <cluster_name>
+```
+
+
+
+
+
 ### Kubernetes viewing config
+
+```
+$ kubectl config view
+- ```
 
 
 ### Kubernetes switching context
